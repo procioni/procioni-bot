@@ -3,10 +3,10 @@
 
 ###################################################################################
 #
-#    EmyTagBot
-#    A Telegram bot meant to create user-based hashtags contents with text, images, audios, sticker, videos.
-#    Copyright (C) 2018  RickyCorte
-#    https://github.com/rickycorte
+#    Il Procione Bot
+#    A Telegram bot built for fun
+#    Copyright (C) 2018  I Procioni
+#    https://github.com/procioni/procioni-bot
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by

@@ -30,3 +30,10 @@ Per eseguire il bot sulla tua macchina:
 `pipenv shell`
 
 `python src/main.py`
+
+
+Se vuoi usare docker esegui:
+
+`docker build -t procione .`
+
+`docker run -p 80:6666 -d procione`
