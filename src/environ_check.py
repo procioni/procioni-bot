@@ -25,6 +25,7 @@
 ###################################################################################
 
 import os
+from pymongo import MongoClient
 
 def check():
     #controlla che tutte le variabili necessarie siano state settate altrimenti chiudi il bot
@@ -45,5 +46,17 @@ def check():
         CURR_VAR = os.environ.get(itm, None)
         if CURR_VAR is None:
             print("[Settings] Missing " + itm + " var value.")
+
+    #controlla che sia possibile connetersi a mongodb
+    print("Checking database...")
+
+    try:
+        #controlla che mongodb vada
+        client = MongoClient( os.environ.get('MONGO_URI', 'error'), serverSelectionTimeoutMS=100 )
+        res = client.server_info()
+    except:
+        print("[Critical] Can't connect to mongodb. Check it is up and running. Closing bot.")
+        exit(2)
+    
     
     print("Check complete, starting bot")

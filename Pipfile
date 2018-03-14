@@ -7,5 +7,9 @@ name = "pypi"
 
 [dev-packages]
 
+
+
 [packages]
+
 python-telegram-bot = "*"
+pymongo = "*"

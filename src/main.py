@@ -36,6 +36,7 @@ environ_check.check()
 import os, logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler, InlineQueryHandler
 from telegram.ext.dispatcher import run_async
+import dbManager
 
 
 #recupera le variabili necessarie ad avviare il bot
@@ -57,6 +58,7 @@ logger = logging.getLogger(__name__)
 @run_async
 def start(bot, update):
     update.message.reply_text("Ciao sono un procione!")
+    dbManager.create_user(update.message.from_user.first_name, update.message.from_user.id)
 
 
 ################################################################################################################################

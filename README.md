@@ -11,6 +11,7 @@ Solo un bot procione creato per divertimento
 
 ## Dipendenze
 * python-telegram-bot
+* pymongo
 
 ## Variabili
 
@@ -19,6 +20,10 @@ Solo un bot procione creato per divertimento
 [REQUIRED] `PORT`: porta da usare con il webhook
 
 [REQUIRED] `APP_LINK`: link da passare a telegram come webhook (no token, viene aggiunto in automatico)
+
+[REQUIRED] `MONGO_URI`: url di connesione a mongodb
+
+[REQUIRED] `DB_NAME`: nome del database da usare
 
 `DEBUG`: true per il polling
 
