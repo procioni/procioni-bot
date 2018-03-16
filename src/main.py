@@ -58,13 +58,26 @@ logger = logging.getLogger(__name__)
 @run_async
 def start(bot, update):
     #controlla se esiste un account con lo stesso TelegramID
-    if(dbManager.exist_user(update.message.from_user.id) == False):
+    if dbManager.exist_user(update.message.from_user.id) == False:
         #crea account
         dbManager.create_user(update.message.from_user.first_name, update.message.from_user.id)
         update.message.reply_text("Account created succesfully!")
     else:
         #mostra errore
         update.message.reply_text("You have already an account!")
+    
+    #controlla se esiste un procione creato per l'account corrente
+    if dbManager.exist_raccoon(update.message.from_user.id) == False:
+        update.message.reply_text("How will you call your raccoon?")
+
+# imposta nome procione
+def setRaccoonName(bot, update):
+    if dbManager.exist_raccoon(update.message.from_user.id) == False:
+        name = update.message.text
+        dbManager.create_raccoon(name, update.message.from_user.id)
+        update.message.reply_text(name + " has born!")
+    else:
+        update.message.reply_text("You have already a raccoon!")
 
 
 ################################################################################################################################
@@ -80,6 +93,8 @@ def main():
 
     #aggiungi gli handler di comandi e funzioni
     dispatcher.add_handler(CommandHandler("start", start))
+
+    dispatcher.add_handler(MessageHandler(Filters.text, setRaccoonName))
 
 
     #lista dei tipi di update supportati dal bot

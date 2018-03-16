@@ -38,17 +38,32 @@ def exist_user(telegramID):
     else:
         return False
 
-#aggiunge un utente al db se manca
+#aggiunge un utente al db
 def create_user(name, telegramID):
-    db.users.update_one(
-            {
-                "telegramID": telegramID
-            },
-            {"$set":
-                {
-                    "name": name,
-                    "telegramID": telegramID
-                }
-            }
-        , upsert=True) #aggiunge o aggiorna un utente
+    db.users.insert_one({
+        "name": name,
+        "telegramID": telegramID
+    })
 
+#controlla se esite procione
+def exist_raccoon(telegramID):
+    cursor = db.raccoons.find({ "owner": telegramID })
+    if cursor.count() > 0:
+        return True
+    else:
+        return False
+
+#aggiunge un procione al db
+def create_raccoon(name, telegramID):
+    db.raccoons.insert_one({
+        "name": name,
+        "owner": telegramID,
+        "stats": {
+            "hp": 10,
+            "atk": 2.5,
+            "def": 2,
+            "vel": 0.8,
+            "prc": 0.75,
+            "frb": 0.05
+        }
+    })
