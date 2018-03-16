@@ -30,9 +30,17 @@ import os
 client = MongoClient( os.environ.get('MONGO_URI', 'error') )
 db = client[ os.environ.get('DB_NAME', 'procione_furioso') ] 
 
+#controlla se esiste utente
+def exist_user(telegramID):
+    cursor = db.users.find({ "telegramID": telegramID })
+    if cursor.count() > 0:
+        return True
+    else:
+        return False
+
 #aggiunge un utente al db se manca
 def create_user(name, telegramID):
-    res = db.users.update_one(
+    db.users.update_one(
             {
                 "telegramID": telegramID
             },

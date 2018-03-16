@@ -54,11 +54,17 @@ logger = logging.getLogger(__name__)
 ################################################################################################################################
 
 
-#comando start
+# comando start
 @run_async
 def start(bot, update):
-    update.message.reply_text("Ciao sono un procione!")
-    dbManager.create_user(update.message.from_user.first_name, update.message.from_user.id)
+    #controlla se esiste un account con lo stesso TelegramID
+    if(dbManager.exist_user(update.message.from_user.id) == False):
+        #crea account
+        dbManager.create_user(update.message.from_user.first_name, update.message.from_user.id)
+        update.message.reply_text("Account created succesfully!")
+    else:
+        #mostra errore
+        update.message.reply_text("You have already an account!")
 
 
 ################################################################################################################################
