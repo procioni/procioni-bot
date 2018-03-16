@@ -1,0 +1,27 @@
+{
+  "account_created":
+    {
+        "default": "Account created succesfully!",
+        "it": "Account creato con successo!"
+    },
+    "already_own_account":
+    {
+        "default": "You already have an account!",
+        "it": "Possiedi gia un account!"
+    },
+    "set_raccoon_name":
+    {
+        "default": "How will you call your raccoon?",
+        "it": "Come vuoi chiamare il tuo procione?"
+    },
+    "already_own_raccoon":
+    {
+        "default": "You have already a raccoon!",
+        "it": "Possiedi gia un procione!"
+    },
+    "new_raccoon":
+    {
+        "default": "{n} has born!",
+        "it": "E' nato {n}!"
+    }
+}

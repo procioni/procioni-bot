@@ -37,6 +37,7 @@ import os, logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler, InlineQueryHandler
 from telegram.ext.dispatcher import run_async
 import dbManager
+import language as lan
 
 
 #recupera le variabili necessarie ad avviare il bot
@@ -56,28 +57,28 @@ logger = logging.getLogger(__name__)
 
 # comando start
 @run_async
-def start(bot, update):
+def start(bot, update):  
     #controlla se esiste un account con lo stesso TelegramID
     if dbManager.exist_user(update.message.from_user.id) == False:
         #crea account
         dbManager.create_user(update.message.from_user.first_name, update.message.from_user.id)
-        update.message.reply_text("Account created succesfully!")
+        lan.send_localized_reply(update, "account_created")
     else:
         #mostra errore
-        update.message.reply_text("You have already an account!")
+        lan.send_localized_reply(update, "already_own_account")
     
     #controlla se esiste un procione creato per l'account corrente
     if dbManager.exist_raccoon(update.message.from_user.id) == False:
-        update.message.reply_text("How will you call your raccoon?")
+        lan.send_localized_reply(update, "set_raccoon_name")
 
 # imposta nome procione
 def setRaccoonName(bot, update):
     if dbManager.exist_raccoon(update.message.from_user.id) == False:
         name = update.message.text
         dbManager.create_raccoon(name, update.message.from_user.id)
-        update.message.reply_text(name + " has born!")
+        lan.send_localized_reply(update, "new_raccoon",n=name)
     else:
-        update.message.reply_text("You have already a raccoon!")
+        lan.send_localized_reply(update, "already_own_raccoon")
 
 
 ################################################################################################################################
